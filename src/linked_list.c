@@ -23,3 +23,47 @@ NodeWilayah* ll_insert(NodeWilayah *head, Wilayah w) {
     baru->next = head;  // node baru menunjuk ke head lama
     return baru;        // node baru jadi head baru
 }
+
+// ── INSERTION SORT ───────────────────────────────────────────
+// Mengurutkan linked list secara descending berdasarkan skor
+// Cara: swap VALUE antar node (lebih simpel dari swap pointer)
+// Kompleksitas: O(n^2) worst case, O(n) best case (sudah terurut)
+void ll_insertion_sort(NodeWilayah *head) {
+    if (!head || !head->next) return; // 0 atau 1 node, skip
+
+    NodeWilayah *i, *j;
+    Wilayah temp;
+
+    // Mirip bubble sort tapi lebih efisien untuk data hampir terurut
+    for (i = head; i != NULL; i = i->next) {
+        for (j = i->next; j != NULL; j = j->next) {
+            // Jika skor node j lebih besar, tukar nilainya
+            if (j->data.skor > i->data.skor) {
+                temp    = i->data;
+                i->data = j->data;
+                j->data = temp;
+            }
+        }
+    }
+}
+
+// ── PRINT ────────────────────────────────────────────────────
+// Menampilkan semua data wilayah (sebelum distribusi)
+void ll_print(NodeWilayah *head) {
+    NodeWilayah *curr = head;
+    int no = 1;
+    printf("\n%-4s %-20s %-10s %-8s %-8s %-6s\n",
+           "No", "Nama Wilayah", "Penduduk", "Stok(L)", "Urgensi", "Skor");
+    printf("%-4s %-20s %-10s %-8s %-8s %-6s\n",
+           "----", "--------------------", "----------", "--------", "--------", "------");
+    while (curr != NULL) {
+        printf("%-4d %-20s %-10d %-8.0f %-8d %-6.2f\n",
+               no++,
+               curr->data.nama,
+               curr->data.penduduk,
+               curr->data.stok,
+               curr->data.urgensi,
+               curr->data.skor);
+        curr = curr->next;
+    }
+}
