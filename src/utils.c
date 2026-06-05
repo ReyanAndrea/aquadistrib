@@ -65,8 +65,8 @@ void cetak_laporan(NodeWilayah *data_head, NodeLog *log_head, float pasokan) {
     }
 
     printf("==================================================================\n");
-    printf("| Total pasokan   : %-10.0f L                               |\n", pasokan);
-    printf("| Terdistribusi   : %-10.0f L                               |\n", total_alokasi);
+    printf("| Total pasokan   : %-10.0f L                                  |\n", pasokan);
+    printf("| Terdistribusi   : %-10.0f L                                  |\n", total_alokasi);
     printf("| Terlayani penuh : %-3d wilayah                               |\n", terlayani);
     printf("| Sebagian        : %-3d wilayah                               |\n", sebagian);
     printf("| Tidak terlayani : %-3d wilayah                               |\n", tidak);
