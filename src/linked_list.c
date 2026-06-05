@@ -47,6 +47,19 @@ void ll_insertion_sort(NodeWilayah *head) {
     }
 }
 
+// ── SEARCH ───────────────────────────────────────────────────
+// Mencari wilayah berdasarkan nama (Linear Search)
+// Kompleksitas: O(n)
+NodeWilayah* ll_search(NodeWilayah *head, char *nama) {
+    NodeWilayah *curr = head;
+    while (curr != NULL) {
+        if (strcmp(curr->data.nama, nama) == 0)
+            return curr; // ditemukan
+        curr = curr->next;
+    }
+    return NULL; // tidak ditemukan
+}
+
 // ── PRINT ────────────────────────────────────────────────────
 // Menampilkan semua data wilayah (sebelum distribusi)
 void ll_print(NodeWilayah *head) {
@@ -65,5 +78,16 @@ void ll_print(NodeWilayah *head) {
                curr->data.urgensi,
                curr->data.skor);
         curr = curr->next;
+    }
+}
+
+// ── FREE MEMORY ──────────────────────────────────────────────
+// Bebaskan semua node agar tidak memory leak
+void ll_free(NodeWilayah *head) {
+    NodeWilayah *curr = head;
+    while (curr != NULL) {
+        NodeWilayah *next = curr->next;
+        free(curr);
+        curr = next;
     }
 }
